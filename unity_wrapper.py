@@ -130,7 +130,9 @@ else:
     try:
         executable_file = unity_runtime_execute(unity_hub_path, unity_version)
         print ("find executable : " + executable_file)
-        subprocess.call(executable_file + " " + unity_args)
+        returncode = subprocess.call(executable_file + " " + unity_args)
+        if returncode != 0:
+            exit(returncode)
     except:
         print('cant get unity executable. check install!', file=sys.stderr)
         sys.exit(1)
